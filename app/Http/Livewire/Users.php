@@ -13,18 +13,19 @@ class Users extends Component
     public $user, $name, $email, $first_name, $last_name, $mobile, $wilaya, $role, $grade;
     public $updateMode = false;
     public $isclickAdd = false;
+    public $user_role = "Admin";
+    public $active ='';
     public function mount()
     {
         $this->wilaya = Wilaya::all();
         $this->role = Role::all();
+        $this->active = '';
     }
     public function render()
     {
         $this->user = User::all();
         return view('livewire.users');
     }
-
-
 
     /*************************** */
 
@@ -86,14 +87,14 @@ class Users extends Component
         $this->validate([
             'selected_id' => 'required|numeric',
             'name' => 'required|min:5',
-            'phone' => 'required'
+            'phone' => 'required',
         ]);
 
         if ($this->selected_id) {
             $record = User::find($this->selected_id);
             $record->update([
                 'name' => $this->name,
-                'phone' => $this->phone
+                'phone' => $this->phone,
             ]);
 
             $this->resetInput();
@@ -109,5 +110,19 @@ class Users extends Component
         }
     }
 
-    /*************************** */
+    public function user_admin()
+    {
+
+        $this->user_role = 'Admin';
+    }
+
+    public function user_miclat()
+    {
+        $this->user_role = 'miclat';
+    }
+
+    public function user_wilaya()
+    {
+        $this->user_role = 'wilaya';
+    }
 }
