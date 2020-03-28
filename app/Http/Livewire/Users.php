@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\Validator;
 
 class Users extends Component
 {
-    public $user, $name, $email, $first_name, $last_name, $mobile, $wilaya, $role, $grade,$w,$r,$password;
+    public $admin,$miclat,$wilayas, $name, $email, $first_name, $last_name, $mobile, $wilaya, $role, $grade,$w,$r,$password;
     public $updateMode = false;
     public $isclickAdd = false;
     public $user_role = "Admin";
     public $active ='';
     public function mount()
     {
+        
         $this->wilaya = Wilaya::all();
         $this->role = Role::all();
         $this->active = '';
@@ -26,7 +27,10 @@ class Users extends Component
     public function render()
     {
        
-        $this->user = User::all();
+        $this->admin = User::Admin();
+        $this->miclat = User::Miclat();
+       $this->wilayas = User::Wilayas();
+       // dd($this->miclat);
         return view('livewire.users');
     }
 

@@ -45,9 +45,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-  /*    public function scopeAdmin($query)
+    public function scopeAdmin($query)
     {
-        return $query->role()->where('votes', '>', 100);
-    } */
+      return $query->Role('admin')->get();
+    } 
+
+     public function scopeMiclat($query)
+    {
+      return $query->Role('miclat')->get();
+    } 
+
+     public function scopeWilayas($query)
+    {
+      return $query->Role('wilaya')->get();
+    } 
 
 }

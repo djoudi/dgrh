@@ -45,7 +45,7 @@
                        <h3>Admin</h3>
                       <table class="table">
                         <tbody>
-                          @foreach ($user as$u)
+                          @foreach ($admin as$u)
                               <tr>
 
                             <td>{{ $u->name }}</td>
@@ -77,7 +77,7 @@
                        <h3>MICLAT</h3>
                       <table class="table">
                         <tbody>
-                         @foreach ($user as$u)
+                         @foreach ($miclat as$u)
                          
                               <tr>
 
@@ -103,7 +103,7 @@
                          <h3>WILAYA</h3>
                       <table class="table">
                         <tbody>
-                          @foreach ($user as$u)
+                          @foreach ($wilayas as$u)
                               <tr>
 
                             <td>{{ $u->name }}</td>
