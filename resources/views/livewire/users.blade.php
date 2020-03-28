@@ -10,7 +10,7 @@
     @endif
 @endif
 
-              <div class="card">
+              <div class="card" wire:key="list-user">
                 <div class="card-header card-header-tabs card-header-info">
                   <div class="nav-tabs-navigation">
                     <div class="nav-tabs-wrapper">
@@ -42,7 +42,7 @@
                   <div class="tab-content" wire:key="tab">
                @if ($user_role=='Admin')
                     <div class="tab-pane {{ $user_role=="Admin" ? 'active':'' }}" id="admin" wire:key="admin">
-                    <h3>Admin</h3>
+                       <h3>Admin</h3>
                       <table class="table">
                         <tbody>
                           @foreach ($user as$u)
@@ -74,10 +74,11 @@
                     </div>
                 @elseif ($user_role=='miclat')
                     <div class="tab-pane {{ $user_role=="miclat" ? 'active':'' }}" id="miclat" wire:key="miclat">
-                    <h3>MICLAT</h3>
+                       <h3>MICLAT</h3>
                       <table class="table">
                         <tbody>
                          @foreach ($user as$u)
+                         
                               <tr>
 
                             <td>{{ $u->name }}</td>
@@ -99,7 +100,7 @@
                     </div>
                 @else
                      <div class="tab-pane {{ $user_role=="wilaya" ? 'active':'' }}" id="wilaya" wire:key="wilaya">
-                     <h3>WILAYA</h3>
+                         <h3>WILAYA</h3>
                       <table class="table">
                         <tbody>
                           @foreach ($user as$u)
@@ -127,7 +128,7 @@
 
 
 
-                  </div>
-                </div>
-              </div>
+                   </div>  {{-- /card-body  --}}
+                </div>   {{-- /card  --}}
+              
 </div>

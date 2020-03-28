@@ -1,5 +1,6 @@
 
-<div class="card" wire:key="create_user">
+<div class="card">
+
                 <div class="card-header card-header-info text-right">
                   <h4 class="card-title">إضافة مستخدم</h4>
                   <p class="card-category">إضافة مستغدم مع تحديد المجموعة</p>
@@ -11,7 +12,6 @@
                         <div class="form-group">
                           <label class="bmd-label-floating" for="name">إسم المستخدم</label>
                           <input type="text" wire:model.lazy="name" class="form-control"  id="name">
-                          <p>{{ $name }}</p>
                             @error('name') <label id="name-error" class="error" for="name">{{ $message }}</label> @enderror
 
                         </div>
@@ -21,7 +21,6 @@
                         <div class="form-group">
                           <label class="bmd-label-floating">البريد الإلكتروني</label>
                           <input type="email" wire:model.lazy="email" class="form-control">
-                          <p>{{ $email }}</p>
                            @error('email') <label id="email-error" class="error" for="email">{{ $message }}</label> @enderror
                         </div>
                       </div>
@@ -63,10 +62,10 @@
 
                       <div class="col-md-6">
                         <div class="form-group">
-                          <select wire:model="wilaya" class="form-control">
+                          <select wire:model="w" class="form-control">
                               <option value="" class="bmd-label-floating">الولاية</option>
                              @foreach ($wilaya as $w )
-                                 <option value="{!! $w->id !!}"  >{!! $w->name !!}</option>
+                                 <option  value="{!! $w->id !!}"  >{!! $w->name !!}</option>
                              @endforeach
 
                           </select>
@@ -75,13 +74,13 @@
                       </div>
                       <div class="col-md-6">
                            <div class="form-group">
-                          <select wire:model="role" class="form-control">
+                          <select wire:model="r" class="form-control">
                               <option value="" class="bmd-label-floating">المجموعة</option>
                               @foreach ($role as $r )
                                  <option value="{!! $r->id !!}" >{!! $r->name !!}</option>
                              @endforeach
                           </select>
-
+                         
                         </div>
                       </div>
                     </div>

@@ -7,10 +7,12 @@ use App\Wilaya;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class Users extends Component
 {
-    public $user, $name, $email, $first_name, $last_name, $mobile, $wilaya, $role, $grade;
+    public $user, $name, $email, $first_name, $last_name, $mobile, $wilaya, $role, $grade,$w,$r,$password;
     public $updateMode = false;
     public $isclickAdd = false;
     public $user_role = "Admin";
@@ -23,6 +25,7 @@ class Users extends Component
     }
     public function render()
     {
+       
         $this->user = User::all();
         return view('livewire.users');
     }
@@ -31,6 +34,7 @@ class Users extends Component
 
     public function showForm()
     {
+       
         $this->isclickAdd = true;
     }
 
@@ -62,13 +66,15 @@ class Users extends Component
             'email' => $this->email,
             'mobile' => $this->mobile,
             'grade' => $this->grade,
-            'wilaya_id' => $this->wilaya,
+            'wilaya_id' => $this->w,
+            'password' => Hash::make($this->password),
 
         ]);
         //$roles = $request->input('roles') ? $request->input('roles') : [];
-        $usert->assignRole($this->role);
+        $usert->assignRole($this->r);
         Log::info($usert);
-        //  $this->resetInput();
+         $this->resetInput();
+          $this->isclickAdd = false;
     }
 
     public function edit($id)
