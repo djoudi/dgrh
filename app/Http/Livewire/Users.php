@@ -9,10 +9,13 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Livewire\WithPagination;
 
 class Users extends Component
 {
-    public $admin,$miclat,$wilayas, $name, $email, $first_name, $last_name, $mobile, $wilaya, $role, $grade,$w,$r,$password;
+    use WithPagination;
+    
+    public $admin,$miclat,$wilayas,$sid, $name, $email, $first_name, $last_name, $mobile, $wilaya, $role, $grade,$w,$r,$password;
     public $updateMode = false;
     public $isclickAdd = false;
     public $user_role = "Admin";
@@ -30,7 +33,6 @@ class Users extends Component
         $this->admin = User::Admin();
         $this->miclat = User::Miclat();
        $this->wilayas = User::Wilayas();
-       // dd($this->miclat);
         return view('livewire.users');
     }
 
@@ -49,7 +51,8 @@ class Users extends Component
         $this->first_name = null;
         $this->email = null;
         $this->grade = null;
-        $this->wilaya_id = null;
+        $this->w = null;
+        $this->r = null;
         $this->mobile = null;
     }
 
@@ -85,30 +88,46 @@ class Users extends Component
     {
         $record = User::findOrFail($id);
 
-        $this->selected_id = $id;
+        $this->sid = $id;
         $this->name = $record->name;
-        $this->phone = $record->phone;
+        $this->first_name = $record->first_name;
+        $this->last_name = $record->last_name;
+        $this->email = $record->email;
+        $this->mobile = $record->mobile;
+        $this->grade = $record->grade;
+        $this->w = $record->wwilaya_id;
+        //$this->r = $record->last_name;
 
         $this->updateMode = true;
+        $this->isclickAdd = true;
     }
 
     public function update()
     {
         $this->validate([
-            'selected_id' => 'required|numeric',
-            'name' => 'required|min:5',
-            'phone' => 'required',
+            'sid' => 'required|numeric',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'wilaya' => 'required',
+            'grade' => 'required',
+            'email' => 'required',
         ]);
 
-        if ($this->selected_id) {
-            $record = User::find($this->selected_id);
-            $record->update([
+        if ($this->sid) {
+            $record = User::find($this->sid);
+         $userU=   $record->update([
                 'name' => $this->name,
-                'phone' => $this->phone,
+                'last_name' => $this->last_name,
+                'first_name' => $this->first_name,
+                'email' => $this->email,
+                'mobile' => $this->mobile,
+                'grade' => $this->grade,
+                'wilaya_id' => $this->w,
             ]);
-
-            $this->resetInput();
-            $this->updateMode = false;
+                   $record->syncRoles($this->r);
+              $this->resetInput();
+              $this->isclickAdd = false;
+              $this->updateMode = false;
         }
     }
 

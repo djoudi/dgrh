@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1232dff5eee19548e4cbcb3517250da",
+    "content-hash": "f5b35da10c2e3287dce7a076153fd055",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3846,6 +3846,68 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2019-10-24T08:53:34+00:00"
+        },
+        {
+            "name": "typehints/laravel-unused",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/typehints/laravel-unused.git",
+                "reference": "673b44051622619e1b3fe68e491412de84840885"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/typehints/laravel-unused/zipball/673b44051622619e1b3fe68e491412de84840885",
+                "reference": "673b44051622619e1b3fe68e491412de84840885",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "5.6.*|5.7.*|5.8.*|^6.0|^7.0",
+                "illuminate/routing": "5.6.*|5.7.*|5.8.*|^6.0|^7.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "nunomaduro/phpinsights": "^1.11",
+                "phpstan/phpstan": "^0.12.3",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TypeHints\\Unused\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TypeHints\\Unused\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mohamed Benhida",
+                    "email": "mohamed@typehints.com",
+                    "homepage": "https://github.com/simoebenhida",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Rachid Laasri",
+                    "email": "rachid@typehints.com",
+                    "homepage": "https://github.com/rashidlaasri",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Unused Views,Controllers,.. for Laravel",
+            "keywords": [
+                "laravel",
+                "unused"
+            ],
+            "time": "2020-03-14T00:15:38+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

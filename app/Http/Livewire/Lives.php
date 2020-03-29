@@ -11,7 +11,9 @@ use BigBlueButton\Parameters\CreateMeetingParameters;
 class Lives extends Component
 {
 
+    public $meets;
     protected $meeting;
+
 
     public function mount(Meeting $meeting)
     {
@@ -19,15 +21,18 @@ class Lives extends Component
     }
     public function render()
     {
+
         return view('livewire.lives');
     }
 
     public function all()
     {
 
+       // $this->meets = Meeting::all();
+
         //$meetings = $this->meeting->all();
         // if ($meetings) {
-        dd($this->meeting);
+        return $this->meeting;
         // }
     }
 
@@ -36,12 +41,14 @@ class Lives extends Component
         $year = date('Y');
         $meetingid = "Miclat-$year";
         $meetingParams = new CreateMeetingParameters($meetingid, "MICLAT Test");
+        return $meetingParams;
         $meetingParams->setRecord(true);
         $meetingParams->setAllowStartStopRecording(true);
         $meetingParams->setAutoStartRecording(true);
         $meetingParams->setMaxParticipants(500);
         $meetingParams->setDuration(180);
         $meetingParams->setModeratorPassword('Tawassol@2020');
+        return $meetingParams;
 
         if ($this->meeting->create($meetingParams)) {
             dd("ok created");

@@ -13,13 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('dgrh.layouts.app');
 });
+ */
+//uth::routes();
 
-Auth::routes();
+Route::get('/', 'Auth\LoginController@showLoginForm');
+Route::post('/', 'Auth\LoginController@login')->name('login');
 
-Route::get('/users', 'UserController@index');
-Route::get('/lives', 'LiveController@index');
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/users', 'UserController@index');
+    Route::get('/chnagepassword', 'ChangePasswordController@index');
+    Route::get('/lives', 'LiveController@index');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/logout', 'Auth\LoginController@logout');
+    Route::post('/meeting/store', 'LiveController@store');
+    Route::post('/meeting/join', 'LiveController@join');
+    Route::get('/logout', 'Auth\LoginController@logout');
+});

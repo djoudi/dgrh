@@ -5,23 +5,20 @@
                   <p class="card-category">إضافة مستغدم مع تحديد المجموعة</p>
                 </div>
                 <div class="card-body">
-                  <form wire:submit.prevent="store">
+                  <form wire:submit.prevent="update">
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating" for="name">إسم المستخدم</label>
                           <input type="text" wire:model.lazy="name" class="form-control"  id="name">
-                          <p>{{ $name }}</p>
                             @error('name') <label id="name-error" class="error" for="name">{{ $message }}</label> @enderror
-
                         </div>
                       </div>
-
+                       <input type="hidden" wire:model="sid">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">البريد الإلكتروني</label>
                           <input type="email" wire:model.lazy="email" class="form-control">
-                          <p>{{ $email }}</p>
                            @error('email') <label id="email-error" class="error" for="email">{{ $message }}</label> @enderror
                         </div>
                       </div>
@@ -63,10 +60,10 @@
 
                       <div class="col-md-6">
                         <div class="form-group">
-                          <select wire:model="wilaya" class="form-control">
+                          <select wire:model="w" class="form-control">
                               <option value="" class="bmd-label-floating">الولاية</option>
                              @foreach ($wilaya as $w )
-                                 <option value="{!! $w->id !!}" :key="{!! $w->id !!}" >{!! $w->name !!}</option>
+                                 <option  value="{!! $w->id !!}"  >{!! $w->name !!}</option>
                              @endforeach
 
                           </select>
@@ -75,33 +72,18 @@
                       </div>
                       <div class="col-md-6">
                            <div class="form-group">
-                          <select wire:model="role" class="form-control">
+                          <select wire:model="r" class="form-control">
                               <option value="" class="bmd-label-floating">المجموعة</option>
                               @foreach ($role as $r )
-                                 <option value="{!! $r->id !!}" :key="{!! $r->id !!}">{!! $r->name !!}</option>
+                                 <option value="{!! $r->id !!}" >{!! $r->name !!}</option>
                              @endforeach
                           </select>
 
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                         <div class="form-group">
-                          <label class="bmd-label-floating">كلمة المرور</label>
-                          <input type="password" wire:model.lazy="password" class="form-control">
-                        </div>
-
-                      </div>
-                         <div class="col-md-6">
-                         <div class="form-group">
-                          <label class="bmd-label-floating">تأكيد كلمة المرور</label>
-                          <input type="password" wire:model.lazy="password" class="form-control">
-                        </div>
-
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary pull-right">إضافة</button>
+              
+                    <button type="submit" class="btn btn-primary pull-right">تعديل</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
